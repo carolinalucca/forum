@@ -1,5 +1,6 @@
 package com.spring.forum.controller;
 
+import com.spring.forum.dto.TopicoDto;
 import com.spring.forum.model.Curso;
 import com.spring.forum.model.Topico;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +13,10 @@ import java.util.List;
 public class TopicosController {
 
     @RequestMapping("/topicos")
-    public List<Topico> lista(String curso) {
+    public List<TopicoDto> lista(String curso) {
 
         Topico topico = new Topico("teste", "teste", new Curso("teste", "teste"));
 
-        return Arrays.asList(topico, topico, topico);
+        return TopicoDto.converter(Arrays.asList(topico, topico, topico));
     }
 }
