@@ -1,4 +1,4 @@
-package com.spring.forum.dto;
+package com.spring.forum.controller.dto;
 
 import com.spring.forum.model.Topico;
 
