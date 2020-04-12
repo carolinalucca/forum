@@ -1,5 +1,6 @@
 package com.spring.forum.controller;
 
+import com.spring.forum.controller.dto.DetalhesTopicoDto;
 import com.spring.forum.controller.dto.TopicoDto;
 import com.spring.forum.controller.form.TopicoForm;
 import com.spring.forum.model.Topico;
@@ -40,5 +41,11 @@ public class TopicosController {
 
         URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(uri).body(new TopicoDto(topico));
+    }
+
+    @GetMapping("/{id}")
+    public DetalhesTopicoDto detalhar(@PathVariable Long id) {
+        Topico topico = topicoRepository.getOne(id);
+        return new DetalhesTopicoDto(topico);
     }
 }
