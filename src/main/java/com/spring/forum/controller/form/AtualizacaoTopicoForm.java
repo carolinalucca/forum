@@ -5,6 +5,7 @@ import com.spring.forum.repository.TopicoRepository;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 public class AtualizacaoTopicoForm {
 
@@ -32,11 +33,14 @@ public class AtualizacaoTopicoForm {
     }
 
     public Topico atualizar(Long id, TopicoRepository topicoRepository) {
-        Topico topico = topicoRepository.getOne(id);
+        Optional<Topico> topico = topicoRepository.findById(id);
 
-        topico.setTitulo(this.titulo);
-        topico.setMensagem(this.mensagem);
+        if (topico.isPresent()) {
+            topico.get().setTitulo(this.titulo);
+            topico.get().setMensagem(this.mensagem);
+            return topico.get();
+        }
 
-        return topico;
+        return null;
     }
 }
